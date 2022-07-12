@@ -1,0 +1,7 @@
+[
+
+	{"command": "commit_completion", "context":
+		[{ "key": "auto_complete_visible" }]
+	},
+	{"command": "insert", "args": {"characters": "."}}
+]

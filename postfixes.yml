@@ -1,0 +1,242 @@
+# List of some scopes (just in case..):
+# 
+# source.actionscript.2  source.dosbatch          source.ini.editorconfig
+# source.applescript     source.dot               source.jade
+# source.asp             source.erlang            source.java
+# source.c               source.gdb.session       source.java-props
+# source.c++             source.gdbregs           source.jl
+# source.camlp4.ocaml    source.git               source.js
+# source.clojure         source.go                source.js.rails
+# source.cmake           source.gradle            source.json
+# source.coffee          source.groovy            source.json.bower
+# source.cs              source.gruntfile.coffee  source.json.npm
+# source.css             source.gruntfile.js      source.jsx
+# source.d               source.gulpfile.coffee   source.less
+# source.diff            source.gulpfile.js       source.lisp
+# source.disasm          source.haskell           source.lua
+# source.dockerfile      source.ini               source.makefile
+# 
+# source.matlab          source.regexp
+# source.nant-build      source.regexp.python
+# source.objc            source.ruby
+# source.objc++          source.ruby.rails
+# source.ocaml           source.rust
+# source.ocamllex        source.sass
+# source.ocamlyacc       source.scala
+# source.pascal          source.scss
+# source.perl            source.shell
+# source.php             source.sql
+# source.procfile        source.sql.ruby
+# source.puppet          source.stylus
+# source.pyjade          source.swift
+# source.python          source.tcl
+# source.qml             source.ts
+# source.r               source.yaml
+# source.r-console
+
+# Structure of fix
+# 
+# {scope}[ {scope}[...]]: - one or multiple (separated by whitespace) scopes
+#   - cmd    - trigger string
+#     target - regex pattern
+#     fix    - template
+
+# Available variables
+# 
+# $-->    - indent
+# $cursor - cursor position
+# $0      - whole matched string
+# $X      - RegEx group indexed from 1
+
+# Some examples:
+
+# C C++
+
+
+# Python
+source.python:
+  # If
+  - cmd: "if"
+    line: true
+    target: ".+"
+    fix: |
+      if $0:
+      $-->
+
+  # If not
+  - cmd: "ifn"
+    line: true
+    target: ".+"
+    fix: |
+      if !$0:
+      $-->
+
+  # Read file
+  - cmd: "rf"
+    line: true
+    target: "(.+?)\\s?[=\\s]\\s?(.+)"
+    fix: |
+      with open($2) as f:
+      $-->$1 = f.read()
+
+  # Write file
+  - cmd: "wf"
+    line: true
+    target: "(.+?)\\s?[=\\s]\\s?(.+)"
+    fix: |
+      with open($1, "w") as f:
+      $-->f.write($2)
+
+
+# C, C++
+source.c++ source.c:
+  # If
+  - cmd: "if"
+    line: true
+    target: ".+"
+    fix: |
+      if ($0) { $cursor; }
+
+  - cmd: "el"
+    line: true
+    target: ".+"
+    fix: |
+      else
+      {
+      $-->$0
+      }$cursor
+
+  # Inlined If
+  - cmd: "ifi"
+    line: true
+    target: ".+"
+    fix: |
+      if ($0) 
+
+  # If not
+  - cmd: "ifn"
+    line: true
+    target: ".+"
+    fix: |
+      if (!$0) 
+      {
+      $-->$cursor
+      }
+
+
+  - cmd: "not"
+    line: false
+    target: ".+"
+    fix: |
+      !$0$cursor
+
+  - cmd: "cst"
+    line: false
+    target: "(.+)\\.(.+)"
+    fix: |
+      (($2)$1)$cursor
+
+
+  - cmd: "ret"
+    line: true
+    target: ".+"
+    fix: |
+      return($0)$cursor;
+
+
+  - cmd: "for"
+    line: true
+    target: ".+"
+    fix: |
+      for (u32 i = 0; i < $0; ++i)
+      {
+      $-->$cursor 
+      }
+
+  # Equality
+  - cmd: "eq"
+    line: true
+    target: "(.+)\\s(.+)"
+    fix: |
+      if ($1 == $2)
+      {
+      $-->$cursor
+      }
+
+  # InEquality
+  - cmd: "neq"
+    line: true
+    target: "(.+)\\s(.+)"
+    fix: |
+      if ($1 != $2)
+      {
+      $-->$cursor
+      }
+
+  # Function
+  - cmd: "fun"
+    line: true
+    target: "([a-zA-Z0-9_]+)\\s?(.*)"
+    fix: |
+      function $1($2) 
+      {
+      $-->$cursor
+      }
+
+  # Log
+  - cmd: "lg"
+    line: true
+    target: ".+"
+    fix: |
+      console.log($0)
+
+  # Fetch
+  - cmd: "fetch"
+    line: true
+    target: ".+"
+    fix: |
+      fetch($0)
+      $-->.then(res => {
+      $-->$-->$cursor
+      $-->})
+      $-->.catch(err => {
+      $-->$-->
+      $-->})
+
+
+  - cmd: "str"
+    line: true
+    target: ".+"
+    fix: |
+      typedef struct
+      {
+      $-->$cursor
+      } $0;
+
+  - cmd: "prd"
+    line: true
+    target: ".+"
+    fix: |
+      printf("$0: %d$cursor\n", $0);
+
+  - cmd: "prs"
+    line: true
+    target: ".+"
+    fix: |
+      printf("$0: %s$cursor\n", $0);
+
+  - cmd: "si"
+    line: false
+    target: ".+"
+    fix: |
+      sizeof($0)$cursor
+
+
+  - cmd: "co"
+    line: true
+    target: ".+"
+    fix: |
+      std::cout << "$0" << $0 << std::endl;$cursor
+
+
+# ... and so on

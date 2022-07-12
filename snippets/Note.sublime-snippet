@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[//NOTE(rahul):]]></content>
+    <!-- Optional: Tab trigger to activate the snippet -->
+    <tabTrigger>note</tabTrigger>
+    <!-- Optional: Scope the tab trigger will be active in -->
+	<scope>(source.c | source.objc | source.c++ | source.objc++) - meta.preprocessor.include - comment - string</scope>
+    <!-- Optional: Description to show in the menu -->
+    <description>NOTE</description>
+</snippet>

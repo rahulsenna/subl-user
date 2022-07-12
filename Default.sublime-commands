@@ -1,0 +1,7 @@
+[
+
+    {
+        "caption": "Move Buffer",
+        "command": "move_to_neighboring_group"
+    }
+]

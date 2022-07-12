@@ -1,0 +1,6 @@
+// These settings override both User and Default settings for the C++ syntax
+{
+"line_numbers": false,
+"save_on_focus_lost": true,
+
+}

@@ -1,0 +1,64 @@
+{
+	"hardware_acceleration": "opengl",
+	"ui_scale": 1.1,
+	
+    "auto_complete_when_likely": true,
+    "auto_match_enabled": true,
+	"mini_auto_complete": true,
+	
+    "auto_complete": false,
+	"tab_completion": true,
+	"auto_complete_commit_on_tab": true,
+	"auto_complete_cycle": true,
+	
+
+	"color_scheme": "Packages/User/JWORT.sublime-color-scheme",
+	"font_face": "JetBrains Mono Medium",
+	// "font_face": "Ligamonacop-regular",
+
+	"font_size": 11,
+
+	"line_padding_bottom": -2,
+    "line_padding_top": -2,
+
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"show_errors_inline": true,
+	"sublime_merge_path": "E:\\SublimeText3\\Sublime Merge\\sublime_merge.exe",
+	"theme": "Adaptive.sublime-theme",
+	// "auto_hide_status_bar": true,
+	// "save_on_focus_lost": true,
+
+
+	// "wide_caret": true,	
+	// "caret_extra_width": 14,
+	"caret_style": "phase",
+	"block_caret": true,
+	// "show_panel_on_build": false,
+
+
+	"vc_vars_cmd": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+	"vc_vars_arch": "amd64",
+
+	"dark_color_scheme": "Packages/User/ColorRed.sublime-color-scheme",
+	"light_color_scheme": "Packages/User/ColorRed.sublime-color-scheme",
+
+	"inactive_sheet_dimming": true,
+
+	"draw_indent_guides": true,
+	"indent_guide_options": ["draw_active_single", "solid"],
+    
+    "update_check": false,
+    // "relative_line_numbers": true,
+	// "line_numbers": true,
+
+ 
+	"ignored_words":
+	[
+		"07f",
+		"frust",
+		"proj",
+		"vec3",],}

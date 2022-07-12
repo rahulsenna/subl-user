@@ -1,0 +1,100 @@
+{
+	"clients": {
+		"clangd": {
+			"enabled": true,
+		},
+		"LSP-pylsp": {
+			"enabled": true,
+		},
+		"LSP-json": {
+			"enabled": true,
+		},
+		"rust-analyzer": {
+			"enabled": true,
+		},
+		"LSP-pylance": {
+			"enabled": true,
+		},
+	},
+	"default_clients": {
+		"clangd": {
+			"command": [
+				"clangd",
+				"--header-insertion-decorators=0",
+				"--header-insertion=never",
+				"--background-index",
+				"--compile-commands-dir=${project_path}\\build\\",
+				"--clang-tidy",
+				// "--log=error",
+			],
+			"languages": [
+				{
+					"languageId": "c",
+					"scopes": [
+						"source.c"
+					],
+					"syntaxes": [
+						"Packages/C++/C.sublime-syntax"
+					],
+				},
+				{
+					"languageId": "cpp",
+					"scopes": [
+						"source.c++"
+					],
+					"syntaxes": [
+						"Packages/C++/C++.sublime-syntax"
+					],
+				},
+				{
+					"languageId": "objective-c",
+					"scopes": [
+						"source.objc"
+					],
+					"syntaxes": [
+						"Packages/Objective-C/Objective-C.sublime-syntax"
+					],
+				},
+				{
+					"languageId": "objective-cpp",
+					"scopes": [
+						"source.objc++"
+					],
+					"syntaxes": [
+						"Packages/Objective-C/Objective-C++.sublime-syntax"
+					],
+				}
+			],
+		},
+	},
+	// "document_highlight_scopes":
+	// {
+	// 	"read": "markup.inserted",
+	// 	"text": "text",
+	// 	"unknown": "text",
+	// 	"write": "markup.changed",
+	// },
+	"semantic_highlighting": true,
+	"document_highlight_style": "fill",
+	// "document_highlight_style": "underline",
+	"only_show_lsp_completions": true,
+	// "show_code_actions_bulb": false,
+	// Show symbol action links in hover popup if available
+	"show_symbol_action_links": true,
+	// Request completions for all characters if set to true,
+	// or just after trigger characters only otherwise.
+	"complete_all_chars": true,
+	"completion_hint_type": "auto",
+	// "lsp_format_on_save": true,
+	"diagnostics_panel_include_severity_level": 4,
+	// "show_diagnostics_in_view_status": 0,
+	"diagnostics_delay_ms": 0,
+	"show_diagnostics_panel_on_save": 0,
+	"diagnostics_gutter_marker": "sign",
+	"show_references_in_quick_panel": true,
+	// "show_diagnostics_highlights": false,
+	// "show_diagnostics_severity_level": 1,
+	
+	// "log_debug": true,
+	// "log_server": ["panel"],
+}

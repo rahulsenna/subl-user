@@ -1,0 +1,29 @@
+// Documentation at https://www.sublimetext.com/docs/themes.html
+{
+	"variables":
+	{
+	  "dark_bg": "color(var(--background) blend(white 100%))",
+
+
+	},
+	"rules":
+	[
+		{
+			"class": "tab_control",
+			"attributes": ["selected"],
+			"layer2.opacity": 0.8,
+			"layer2.texture": "Theme - Default/common/tab_square_pinstripe.png",
+			"layer2.inner_margin": [0, 0, 0, 0],
+			
+		},
+
+		{
+			"class": "tab_control",
+			"attributes": ["!highlighted","selected"],
+			"layer2.opacity": 0.5,
+			"layer2.texture": "Theme - Default/common/tab_square_pinstripe.png",
+			"layer2.inner_margin": [0, 0, 0, 0],
+			
+		},
+	]
+}

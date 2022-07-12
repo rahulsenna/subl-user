@@ -1,0 +1,24 @@
+// Settings in here override those in "LSP-pylsp/LSP-pylsp.sublime-settings"
+{
+/*	  
+    "settings": {
+
+        "pylsp.plugins.pycodestyle.maxLineLength": 140,
+        "pylsp.plugins.pycodestyle.ignore": ["E701", "E722"],
+
+        "pylsp.plugins.mccabe.enabled": false,
+
+
+        "pylsp.plugins.pydocstyle.enabled": false,
+        "pylsp.plugins.pyflakes.enabled": true,
+        "pylsp.plugins.pylint.enabled": false,
+        "pylsp.plugins.flake8.enabled": false,
+        
+        "pylsp.plugins.pylsp_mypy.enabled": true,
+        "pylsp.plugins.pylsp_mypy.dmypy": true,
+        "pylsp.plugins.pylsp_mypy.live_mode": true,
+        "pylsp.plugins.pylsp_mypy.strict": false,
+
+    },
+*/
+}

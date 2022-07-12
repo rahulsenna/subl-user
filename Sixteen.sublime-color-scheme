@@ -1,0 +1,107 @@
+// Documentation at https://www.sublimetext.com/docs/color_schemes.html
+{
+	"variables":
+	{
+	},
+	"globals":
+	{
+	
+       "background": "#FDF6E3",
+
+	},
+	"rules":
+	[
+		{
+		    "scope": "meta.semantic-token.lsp",
+		    "background": "#01010101",
+	    },
+	    {
+            "scope": "meta.semantic.variable, meta.semantic.variable.declaration",
+            "foreground": "var(red)",
+        },
+        {
+            "scope": "meta.semantic.parameter",
+            "foreground": "var(grey5)",
+        },
+        {
+            "scope": " meta.semantic.selfParameter",
+            "foreground": "#A566A0",
+        },
+        {
+            "scope": "meta.semantic.struct, meta.semantic.class, meta.semantic.enum",
+            "foreground": "#008080",
+        },
+        {
+            "scope": "meta.semantic.type",
+            "foreground": "#371F80",
+        },
+        {
+            "scope": "meta.semantic.macro, semantic.variable.readonly.lsp",
+            "foreground": "#660E7A",
+            "font_style": "bold italic"
+        },
+        {
+            "scope": "meta.semantic.enumMember",
+              "foreground": "#660E7A",
+            "font_style": "bold italic"
+        },
+        {
+            "scope": "meta.semantic.property",
+            "foreground": "#660E7A",
+        },
+        {
+            "scope": "meta.semantic.function",
+            "foreground": "#1F542E",
+            "font_style": "bold"
+        },
+
+        {
+            "scope": "meta.semantic.comment",
+            "foreground": "var(grey)",
+        },
+        
+        {
+            "scope": "meta.semantic.module",
+            "foreground": "var(yellow)",
+        },
+
+
+        {
+            "scope": "meta.semantic.magicFunction.lsp,meta.semantic.variable.satic.lsp",
+            "foreground": "var(red)",
+        },
+
+        
+// Todo
+        {
+            "name": "todo",
+            "scope": "todo",
+            "foreground": "var(red)",
+            "font_style": "bold underline"
+        },
+        {
+            "name": "note",
+            "scope": "note",
+            "foreground": "var(green)",
+            "font_style": "bold underline"
+        },
+//
+
+
+        {
+            "name": "Keywords",
+            "scope": "keyword, keyword.operator.word, storage, storage.type",
+            "foreground": "#000090",
+            "font_style": "bold"
+        },
+
+        {
+            "name": "Functions",
+            "scope": "entity.name.function",
+            "foreground": "#1F542E",
+            "font_style": "bold"
+        },
+
+
+	]
+}

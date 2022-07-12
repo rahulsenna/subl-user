@@ -1,0 +1,90 @@
+import sublime
+import sublime_plugin
+import re
+
+from ctypes import *
+c_lib_file = "C:\\Users\\AgentOfChaos\\Desktop\\test\\build\\test.dll"
+clib = CDLL(c_lib_file)
+
+matching = []
+last_choice = ''
+seed_search_word = ''
+lookup_index = 0
+case_separator = re.compile(r'([A-Z])?([^A-Z]*)')
+
+class HippieWordCompletionCommand(sublime_plugin.TextCommand):
+	def run(self, edit, backward=False):
+		# backward != backward
+		global last_choice, lookup_index, matching, seed_search_word
+
+		search_word_region = self.view.word(self.view.sel()[0])
+		search_word = self.view.substr(sublime.Region(search_word_region.a, self.view.sel()[0].end()))
+
+		best_match = clib.best_match
+		best_match.argtypes = [c_char_p,  c_bool]
+		best_match.restype = c_char_p
+		result = best_match(bytes(search_word, 'utf-8'), backward)
+
+		if (result.decode("utf-8")):
+			for caret in self.view.sel():
+				self.view.replace(edit, sublime.Region(self.view.word(caret).a, caret.end()), result.decode("utf-8"))
+
+word_list_global = {}
+word_pattern = re.compile(r'(\w+)', re.S)
+class Listener(sublime_plugin.EventListener):
+	def on_init(self, views):
+		main_func = clib.main_func
+		main_func.argtypes = []
+		main_func()
+		global word_list_global
+		for view in views:
+			contents = view.substr(sublime.Region(0, view.size()))
+			word_list_global[view.file_name()] = list(dict.fromkeys(word_pattern.findall(contents)))
+
+	def on_modified_async(self, view):
+		global first_half, second_half
+		try:
+			first_half  = c_char_p(bytes(view.substr(sublime.Region(0, view.sel()[0].begin())), 'utf-8'))
+			second_half  = c_char_p(bytes(view.substr(sublime.Region(view.sel()[0].begin(), view.size())), 'utf-8'))
+
+			text_to_list = clib.text_to_list
+			text_to_list.argtypes = [c_char_p,  c_char_p]
+			text_to_list(first_half, second_half)
+
+		except:
+			pass
+
+
+def did_match(candidate_word: str, search_word: str, case_separated_s_word: list)->bool:
+	result = False
+	if search_word in candidate_word:
+		return True
+
+	if len(search_word) > 1 and '_' in candidate_word:
+		# priortize matching first letters in combined_word
+		# priortize = False
+		# for part in candidate_word.split('_'):
+		# 	if part[0] in search_word:
+		# 		priortize = True
+		# 	else:
+		# 		priortize = False
+		# 		break
+		# if priortize:
+		# 	matching.insert(0, candidate_word)
+		# 	return False
+
+		for char in search_word:
+			if char in candidate_word:
+				result = True
+			else:
+				result = False
+				break
+	else:
+		for word_part in  case_separated_s_word:
+			if word_part in candidate_word:
+				result = True
+			else:
+				result = False
+				break
+	
+	return result

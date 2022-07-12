@@ -1,0 +1,7 @@
+[
+	{ "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+
+	// { "command": "show_overlay", "args": {"overlay": "goto", "text": "@"}},
+	// {"command": "move", "args": {"by": "lines", "forward": true}},
+	// {"command": "insert", "args": {"characters": "\n"}},
+]

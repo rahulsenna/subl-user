@@ -1,0 +1,7 @@
+// See the left pane for the list of settings and valid values
+{
+	// "debug": true,
+	// "debug_log_file": "C:\\Users\\AgentOfChaos\\Desktop\\sublime_sftp_debug.txt",
+	"diff_command": ["clion", "diff", "%1$s", "%2$s"]
+	
+}
