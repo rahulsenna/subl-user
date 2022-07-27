@@ -245,7 +245,8 @@ source.js source.ts:
   - cmd: "if"
     target: ".+"
     fix: |
-      if ($0) {
+      if ($0)
+      {
       $-->$cursor
       }
   # Inlined If
@@ -257,21 +258,24 @@ source.js source.ts:
   - cmd: "ifn"
     target: ".+"
     fix: |
-      if (!$0) {
+      if (!$0)
+      {
       $-->$cursor
       }
   # Equality
   - cmd: "eq"
     target: "(.+)\\s(.+)"
     fix: |
-      if ($1 === $2) {
+      if ($1 === $2)
+      {
       $-->$cursor
       }
   # Function
   - cmd: "fun"
     target: "([a-zA-Z0-9_]+)\\s?(.*)"
     fix: |
-      function $1($2) {
+      function $1($2)
+      {
       $-->$cursor
       }
   # Log
