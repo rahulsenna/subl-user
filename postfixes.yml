@@ -239,4 +239,56 @@ source.c++ source.c:
       std::cout << "$0" << $0 << std::endl;$cursor
 
 
+# Javascript, Typescript
+source.js source.ts:
+  # If
+  - cmd: "if"
+    target: ".+"
+    fix: |
+      if ($0) {
+      $-->$cursor
+      }
+  # Inlined If
+  - cmd: "ifi"
+    target: ".+"
+    fix: |
+      if ($0) 
+  # If not
+  - cmd: "ifn"
+    target: ".+"
+    fix: |
+      if (!$0) {
+      $-->$cursor
+      }
+  # Equality
+  - cmd: "eq"
+    target: "(.+)\\s(.+)"
+    fix: |
+      if ($1 === $2) {
+      $-->$cursor
+      }
+  # Function
+  - cmd: "fun"
+    target: "([a-zA-Z0-9_]+)\\s?(.*)"
+    fix: |
+      function $1($2) {
+      $-->$cursor
+      }
+  # Log
+  - cmd: "lg"
+    target: ".+"
+    fix: |
+      console.log($0)
+  # Fetch
+  - cmd: "fetch"
+    target: ".+"
+    fix: |
+      fetch($0)
+      $-->.then(res => {
+      $-->$-->$cursor
+      $-->})
+      $-->.catch(err => {
+      $-->$-->
+      $-->})
+
 # ... and so on

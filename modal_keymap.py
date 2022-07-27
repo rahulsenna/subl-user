@@ -57,10 +57,12 @@ class EvtListener(sublime_plugin.EventListener):
 
     def on_new(self, view):
         view.settings().set('command_mode', True)
+        sublime.active_window().run_command('toggle_green')
 
         
     def on_load(self, view):
         view.settings().set('command_mode', True)
+        sublime.active_window().run_command('toggle_green')
 
 
     def on_post_text_command(self, view, command_name, args):
