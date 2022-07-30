@@ -248,6 +248,12 @@ source.c++ source.c:
 
 # Javascript, Typescript
 source.js source.ts:
+  - cmd: "ret"
+    line: false
+    target: "(\\w+)"
+    fix: |
+      return($0)$cursor;
+
   # If
   - cmd: "if"
     line: true
@@ -278,6 +284,15 @@ source.js source.ts:
     target: "(.+)\\s(.+)"
     fix: |
       if ($1 === $2)
+      {
+      $-->$cursor
+      }
+  # NotEquality
+  - cmd: "neq"
+    line: true
+    target: "(.+)\\s(.+)"
+    fix: |
+      if ($1 !== $2)
       {
       $-->$cursor
       }
