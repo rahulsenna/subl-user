@@ -1,4 +1,4 @@
-# List of some scopes (just in case..):
+     # List of some scopes (just in case..):
 # 
 # source.actionscript.2  source.dosbatch          source.ini.editorconfig
 # source.applescript     source.dot               source.jade
@@ -55,6 +55,13 @@
 
 # Python
 source.python:
+  # Print
+  - cmd: "pr"
+    line: true
+    target: ".+"
+    fix: |
+      print("$0: ", $0)
+
   # If
   - cmd: "if"
     line: true
@@ -132,14 +139,14 @@ source.c++ source.c:
 
   - cmd: "cst"
     line: false
-    target: "(.+)\\.(.+)"
+    target: "(\\w+)\\.(\\w+)"
     fix: |
       (($2)$1)$cursor
 
 
   - cmd: "ret"
-    line: true
-    target: ".+"
+    line: false
+    target: "(\\w+)"
     fix: |
       return($0)$cursor;
 
@@ -227,9 +234,9 @@ source.c++ source.c:
 
   - cmd: "si"
     line: false
-    target: ".+"
+    target: "(\\w+)"
     fix: |
-      sizeof($0)$cursor
+      sizeof($1)$cursor
 
 
   - cmd: "co"
@@ -243,6 +250,7 @@ source.c++ source.c:
 source.js source.ts:
   # If
   - cmd: "if"
+    line: true
     target: ".+"
     fix: |
       if ($0)
@@ -251,11 +259,13 @@ source.js source.ts:
       }
   # Inlined If
   - cmd: "ifi"
+    line: true
     target: ".+"
     fix: |
       if ($0) 
   # If not
   - cmd: "ifn"
+    line: true
     target: ".+"
     fix: |
       if (!$0)
@@ -264,6 +274,7 @@ source.js source.ts:
       }
   # Equality
   - cmd: "eq"
+    line: true
     target: "(.+)\\s(.+)"
     fix: |
       if ($1 === $2)
@@ -272,6 +283,7 @@ source.js source.ts:
       }
   # Function
   - cmd: "fun"
+    line: true
     target: "([a-zA-Z0-9_]+)\\s?(.*)"
     fix: |
       function $1($2)
@@ -280,11 +292,23 @@ source.js source.ts:
       }
   # Log
   - cmd: "lg"
+    line: true
     target: ".+"
     fix: |
-      console.log($0)
+      console.log("$0$cursor: ", $0)
+  - cmd: "llg"
+    line: true
+    target: ".+"
+    fix: |
+      console.log("$0");
+  - cmd: "prd"
+    line: true
+    target: ".+"
+    fix: |
+      console.log("$0$cursor: ", $0)
   # Fetch
   - cmd: "fetch"
+    line: true
     target: ".+"
     fix: |
       fetch($0)
