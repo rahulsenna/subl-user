@@ -12,11 +12,11 @@
 	"auto_complete_cycle": true,
 	
 
-	"color_scheme": "Packages/User/JWORT.sublime-color-scheme",
-	"font_face": "JetBrains Mono Medium",
+	"color_scheme": "Packages/User/JWORT_GREEN.sublime-color-scheme",
+	"font_face": "Monolisa",
 	// "font_face": "Ligamonacop-regular",
 
-	"font_size": 12,
+	"font_size": 16,
 
 	"line_padding_bottom": -2,
     "line_padding_top": -2,
