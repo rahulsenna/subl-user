@@ -127,6 +127,9 @@
  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝     ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
 */
 
+	{ "keys": ["ctrl+alt+m"], "command": "toggle_record_macro" },
+	{ "keys": ["ctrl+alt+n"], "command": "run_macro" },
+	{ "keys": ["ctrl+alt+b"], "command": "focus_neighboring_group" },
 
 
 	//
@@ -504,6 +507,8 @@
 { "keys": ["f4"], "command": "build" },
 
 
+// Undo
+{ "keys": ["z"], "command": "undo" , "context":[{ "key": "setting.command_mode" }] },
 
 
 
