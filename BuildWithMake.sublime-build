@@ -1,6 +1,6 @@
 {
     "target": "terminus_exec",
-    "shell_cmd": "g++ -std=c++17 -Wall -Wextra -Wpedantic \"$file\" -o \"$file_base_name\"",
+    "shell_cmd": "g++ -std=c++17 -Wall -Wextra -Wpedantic \"$file\" -o \"bin/$file_base_name\"",
     "file_regex": "^(.*):([0-9]+):([0-9]+): (.*)$",
     "line_regex": "^.*:([0-9]+):([0-9]+): (.*)$",
     "working_dir": "${project_path:${folder}}",
@@ -9,7 +9,7 @@
     [
         {
             "name": "Run",
-            "shell_cmd": "g++ -std=c++17 -Wall -Wextra -Wpedantic \"$file\" -o \"$file_base_name\" && \"bin/$file_base_name\""
+            "shell_cmd": "g++ -std=c++17 -Wall -Wextra -Wpedantic \"$file\" -o \"bin/$file_base_name\" && \"bin/$file_base_name\""
         }
     ]
 }
