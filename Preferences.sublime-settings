@@ -1,5 +1,5 @@
 {
-	"hardware_acceleration": "opengl",
+	"hardware_acceleration": "none",
 	"ui_scale": 1.1,
 	
     "auto_complete_when_likely": true,

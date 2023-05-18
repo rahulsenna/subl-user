@@ -1,9 +1,0 @@
-<snippet>
-    <content><![CDATA[//TODO(rahul):]]></content>
-    <!-- Optional: Tab trigger to activate the snippet -->
-    <tabTrigger>todo</tabTrigger>
-    <!-- Optional: Scope the tab trigger will be active in -->
-	<scope>(source.c | source.objc | source.c++ | source.objc++ | source.js | source.ts) - meta.preprocessor.include - comment - string</scope>
-    <!-- Optional: Description to show in the menu -->
-    <description>TODO</description>
-</snippet>
