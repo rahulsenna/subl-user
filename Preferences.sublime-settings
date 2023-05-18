@@ -12,7 +12,7 @@
 	"auto_complete_cycle": true,
 	
 
-	"color_scheme": "Packages/User/JWORT_GREEN.sublime-color-scheme",
+	"color_scheme": "Packages/User/JWORT.sublime-color-scheme",
 	"font_face": "Monolisa",
 	// "font_face": "Ligamonacop-regular",
 
@@ -44,8 +44,8 @@
 	"vc_vars_cmd": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat",
 	"vc_vars_arch": "amd64",
 
-	"dark_color_scheme": "Packages/User/ColorRed.sublime-color-scheme",
-	"light_color_scheme": "Packages/User/ColorRed.sublime-color-scheme",
+	// "dark_color_scheme": "Packages/User/ColorRed.sublime-color-scheme",
+	// "light_color_scheme": "Packages/User/ColorRed.sublime-color-scheme",
 
 	"inactive_sheet_dimming": true,
 

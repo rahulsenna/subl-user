@@ -1,0 +1,48 @@
+{
+    "target": "terminus_exec",
+    "shell_cmd": "g++ -std=c++17 -Wall -Wextra -Wpedantic \"$file\" -o \"$file_base_name\"",
+    "file_regex": "^(.*):([0-9]+):([0-9]+): (.*)$",
+    "line_regex": "^.*:([0-9]+):([0-9]+): (.*)$",
+    "working_dir": "${project_path:${folder}}",
+    "selector": "source.cpp",
+    "variants":
+    [
+        {
+            "name": "Run",
+            "shell_cmd": "g++ -std=c++17 -Wall -Wextra -Wpedantic \"$file\" -o \"$file_base_name\" && \"bin/$file_base_name\""
+        }
+    ]
+}
+ 
+
+/*
+
+"file_regex" string
+
+    A regular expression to run on the build output to match file information. The matched file information is used to enable result navigation. The regex should capture 2, 3 or 4 groups.
+
+    The capture groups should be:
+
+        filename
+
+        line number
+
+        column number
+
+        message
+
+    Example: "^\s*(\\S[^:]*)\\((\\d+):(\\d+)\\): ([^\\n]+)"
+
+"line_regex" string
+
+A regular expression to run on the build output to match line information. The matched file information is used to enable result navigation. The regex should capture 1, 2 or 3 groups.
+
+The groups should capture:
+
+    line number
+
+    column number
+
+    error message
+
+*/
