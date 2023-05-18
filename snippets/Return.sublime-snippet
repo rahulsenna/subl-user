@@ -1,0 +1,10 @@
+<snippet>
+  <description>ret Condition</description>
+  <content><![CDATA[ret (!${1:/* condition */})
+{
+  ${0:}
+}]]></content>
+  <tabTrigger>.ret</tabTrigger>
+
+  <scope>(source.c | source.objc | source.c++ | source.objc++) - meta.preprocessor.include - comment - string</scope>
+</snippet>
