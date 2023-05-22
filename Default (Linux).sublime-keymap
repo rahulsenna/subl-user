@@ -216,10 +216,10 @@
 
 { "keys": ["i"], "command": "move", "args": {"by": "pages", "forward": false}, "context": [
 	{ "key": "setting.command_mode" },
-	{"key": "setting.word_mode", "operator": "equal", "operand": false},
+	{"key": "setting.word_mode",    "operator": "equal", "operand": false},
 	{"key": "setting.subword_mode", "operator": "equal", "operand": false},
-	{"key": "setting.delete_mode", "operator": "equal", "operand": true},] },
-
+	{"key": "setting.delete_mode",  "operator": "equal", "operand": true  },] },
+ 
 { "keys": ["k"], "command": "move", "args": {"by": "pages", "forward": true},  "context": [
 	{ "key": "setting.command_mode" },
 	{"key": "setting.word_mode", "operator": "equal", "operand": false},
@@ -228,13 +228,14 @@
 
 
 
-{ "keys": ["ctrl+l"], "command": "move_to", "args": {"to": "brackets"}, "context": [{ "key": "setting.command_mode" }]},
+{ "keys": ["["], "command": "move_to", "args": {"to": "brackets"}, "context": [{ "key": "setting.command_mode" }]},
 { "keys": ["ctrl+j"], "command": "move_to", "args": {"to": "brackets"}, "context": [{ "key": "setting.command_mode" }]},
 
 
 
-{ "keys": ["ctrl+l"], "command": "move_to", "args": {"to": "brackets", "extend": true}, "context": [{ "key": "setting.command_mode" },
-	{"key": "setting.visual_mode", "operator": "equal", "operand": true}]  },
+{ "keys": ["["], "command": "move_to", "args": {"to": "brackets", "extend": true},
+	"context": [{ "key": "setting.command_mode" },
+							{ "key": "setting.visual_mode", "operator": "equal", "operand": true}]  },
 { "keys": ["ctrl+j"], "command": "move_to", "args": {"to": "brackets", "extend": true}, "context": [{ "key": "setting.command_mode" },
 	{"key": "setting.visual_mode", "operator": "equal", "operand": true}]  },
 //-------------------------------------------
@@ -484,8 +485,8 @@
 {"keys": ["t"], "command": "format_line", "context": [{ "key": "setting.command_mode" },{"key": "setting.lsp_active"}]},
 
 {"keys": ["r"], "command": "lsp_symbol_rename", "context": [{ "key": "setting.command_mode" },{"key": "setting.lsp_active"}]},
-{ "keys": ["["], "command": "undo", "context":[{ "key": "setting.command_mode" }] },
-{ "keys": ["]"], "command": "redo_or_repeat", "context":[{ "key": "setting.command_mode" }] },
+// { "keys": ["["], "command": "undo", "context":[{ "key": "setting.command_mode" }] },
+// { "keys": ["]"], "command": "redo_or_repeat", "context":[{ "key": "setting.command_mode" }] },
 
 
 /////////////////////

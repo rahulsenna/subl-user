@@ -33,6 +33,7 @@
 # source.qml             source.ts
 # source.r               source.yaml
 # source.r-console
+
 # Structure of fix
 # 
 # {scope}[ {scope}[...]]: - one or multiple (separated by whitespace) scopes
@@ -96,55 +97,12 @@ source.python:
 
 # C, C++
 source.c++ source.c:
-
-  # Accumulate
-  - cmd: "acc"
-    line: true
-    target: ".+"
-    fix: |
-      auto sum = accumulate($0.begin(), $0.end(), 0$cursor);
-
-  # Sort
-  - cmd: "srt"
-    line: true
-    target: ".+"
-    fix: |
-      sort($0.begin(), $0.end());$cursor
-
-  # Sort Descending
-  - cmd: "srtd"
-    line: true
-    target: ".+"
-    fix: |
-      sort($0.begin(), $0.end(), greater<int>());
-
-
-  # For Each
-  - cmd: "fore"
-    line: true
-    target: ".+"
-    fix: |
-      for (auto &e: $0)
-      {
-      $-->$cursor
-      }
-
-
-
-  - cmd: "nn"
-    line: false
-    target: "(\\w+)\\s(\\w+)"
-    fix: |
-      !$1 fuck$cursor $2
   # If
   - cmd: "if"
     line: true
     target: ".+"
     fix: |
-      if ($0)
-      { 
-      $-->$cursor
-      }
+      if ($0) { $cursor; }
 
   - cmd: "el"
     line: true
@@ -173,20 +131,31 @@ source.c++ source.c:
       }
 
 
+  - cmd: "not"
+    line: false
+    target: ".+"
+    fix: |
+      !$0$cursor
+
+  - cmd: "cst"
+    line: false
+    target: "(\\w+)\\.(\\w+)"
+    fix: |
+      (($2)$1)$cursor
+
+
+  - cmd: "ret"
+    line: false
+    target: "(\\w+)"
+    fix: |
+      return($0)$cursor;
+
+
   - cmd: "for"
     line: true
     target: ".+"
     fix: |
-      for (size_t i = 0; i < $0; ++i)
-      {
-      $-->$cursor 
-      }
-
-  - cmd: "forj"
-    line: true
-    target: "(.+)\\s(.+)"
-    fix: |
-      for (size_t $2 = 0; $2 < $1; ++$2)
+      for (u32 i = 0; i < $0; ++i)
       {
       $-->$cursor 
       }
@@ -211,6 +180,36 @@ source.c++ source.c:
       $-->$cursor
       }
 
+  # Function
+  - cmd: "fun"
+    line: true
+    target: "([a-zA-Z0-9_]+)\\s?(.*)"
+    fix: |
+      function $1($2) 
+      {
+      $-->$cursor
+      }
+
+  # Log
+  - cmd: "lg"
+    line: true
+    target: ".+"
+    fix: |
+      console.log($0)
+
+  # Fetch
+  - cmd: "fetch"
+    line: true
+    target: ".+"
+    fix: |
+      fetch($0)
+      $-->.then(res => {
+      $-->$-->$cursor
+      $-->})
+      $-->.catch(err => {
+      $-->$-->
+      $-->})
+
 
   - cmd: "str"
     line: true
@@ -221,44 +220,17 @@ source.c++ source.c:
       $-->$cursor
       } $0;
 
-
-  - cmd: "not"
-    line: false
-    target: "w+"
-    fix: |
-      !$0$cursor
-
-  - cmd: "cst"
-    line: false
-    target: "(\\w+)\\.(\\w+)"
-    fix: |
-      (($2)$1)$cursor
-
-
-  - cmd: "ret"
-    line: false
-    target: "([^\\s]+)"
-    fix: |
-      return($0);$cursor
-
   - cmd: "prd"
-    line: false
-    target: "([^\\s]+)"
+    line: true
+    target: ".+"
     fix: |
       printf("$0: %d$cursor\n", $0);
 
   - cmd: "prs"
-    line: false
-    target: "([^\\s]+)"
-    fix: |
-      printf("$0: %s$cursor\n", $0);
-
-  - cmd: "pr"
     line: true
     target: ".+"
     fix: |
-      printf("$0\n");
-
+      printf("$0: %s$cursor\n", $0);
 
   - cmd: "si"
     line: false
@@ -271,52 +243,16 @@ source.c++ source.c:
     line: true
     target: ".+"
     fix: |
-      std::cout << "$0: " << $0 << '\n';$cursor
+      std::cout << "$0" << $0 << std::endl;$cursor
 
-
-  - cmd: "main"
-    line: true
-    target: ".+"
-    fix: |
-      #include <bits/stdc++.h>
-      using namespace std;
-
-      int main()
-      {
-      $-->$cursor
-      $-->return(0);
-      }
-
-  - cmd: "mainst"
-    line: true
-    target: ".+"
-    fix: |
-      #include <stdio.h>
-      #include <stdlib.h>
-
-      int main()
-      {
-      $-->printf("Hello, Sailor!\n");$cursor
-      $-->return(0);
-      }
 
 # Javascript, Typescript
 source.js source.ts:
   - cmd: "ret"
     line: false
-    target: "[\\w.]+"
+    target: "(\\w+)"
     fix: |
       return($0)$cursor;
-
-  # For
-  - cmd: "for"
-    line: true
-    target: ".+"
-    fix: |
-      for (let i=0; i<$0; ++i)
-      {
-      $-->$cursor
-      }
 
   # If
   - cmd: "if"
@@ -376,15 +312,15 @@ source.js source.ts:
     fix: |
       console.log("$0$cursor: ", $0)
   - cmd: "llg"
-    line: false
-    target: "[\\w.]+"
-    fix: |
-      console.log("$0: ", $0);
-  - cmd: "pr"
     line: true
     target: ".+"
     fix: |
-      console.log("$0$cursor")
+      console.log("$0");
+  - cmd: "prd"
+    line: true
+    target: ".+"
+    fix: |
+      console.log("$0$cursor: ", $0)
   # Fetch
   - cmd: "fetch"
     line: true
@@ -397,36 +333,5 @@ source.js source.ts:
       $-->.catch(err => {
       $-->$-->
       $-->})
-
-  # Arrays Arrow
-  - cmd: "rd"
-    line: true
-    target: ".+"
-    fix: |
-      $0.reduce((sum,e)=> sum$cursor+e,0)
-
-  - cmd: "fl"
-    line: true
-    target: ".+"
-    fix: |
-      $0.filter((e,i$cursor)=> e>1)
-
-  - cmd: "fe"
-    line: true
-    target: ".+"
-    fix: |
-      $0.forEach((e,i$cursor)=> e)
-
-  - cmd: "mp"
-    line: true
-    target: ".+"
-    fix: |
-      $0.map(x=> x*$cursor2)
-
-  - cmd: "st"
-    line: true
-    target: ".+"
-    fix: |
-      $0.sort((a,b)=> a-b$cursor)
 
 # ... and so on
