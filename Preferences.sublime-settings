@@ -13,7 +13,7 @@
 	
 
 	"color_scheme": "Packages/User/JWORT.sublime-color-scheme",
-	"font_face": "Monolisa",
+	"font_face": "MonoLisa-Medium",
 	// "font_face": "Ligamonacop-regular",
 
 	"font_size": 16,
@@ -25,6 +25,10 @@
 	"ignored_packages":
 	[
 		"LSP-copilot",
+		"LSP-json",
+		"LSP-pylance",
+		"LSP-pylsp",
+		"LSP-typescript",
 		"Vintage",
 	],
 	"show_errors_inline": true,

@@ -5,7 +5,7 @@ import sys
 import threading
 
 if sys.platform == 'win32':
-    sys.path.insert(4, 'C:\\Python39\\lib\\site-packages')
+    sys.path.insert(4, 'C:\\Users\\agentofchaos\\AppData\\Local\\Programs\\Python\\Python38\\Lib\\site-packages')
 elif sys.platform == 'darwin':
     sys.path.insert(4, '/usr/lib/python3/dist-packages')
     sys.path.insert(4, '/usr/local/lib/python3.10/site-packages')
